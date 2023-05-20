@@ -1,5 +1,7 @@
 # PokedexAngular - Angular App (Vida FullStack)
 
+Vida FullStack Youtube Video - https://youtu.be/UhOcUII_5PU
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
 ## Development server
