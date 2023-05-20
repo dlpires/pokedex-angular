@@ -17,6 +17,7 @@ export class DetailsComponent implements OnInit{
 
   public pokemon: any;
   public isLoading: boolean = false;
+  public apiError: boolean = false;
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,10 +25,10 @@ export class DetailsComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.getPokemon;  
+    this.getPokemon();  
   }
 
-  get getPokemon(){
+  public getPokemon(){
     const id = this.activatedRoute.snapshot.params['id'];
     const pokemon = this.PokeApiService.apiGetPokemons(`${this.urlPokemon}/${id}`);
     const name = this.PokeApiService.apiGetPokemons(`${this.urlName}/${id}`);
@@ -35,7 +36,12 @@ export class DetailsComponent implements OnInit{
     forkJoin([pokemon, name]).subscribe(
       res => {
         this.pokemon = res;
-    })
+        this.isLoading = true;
+      },
+      error => {
+        this.apiError = true;
+      }
+    )
 
     return console.log(id);
   }
